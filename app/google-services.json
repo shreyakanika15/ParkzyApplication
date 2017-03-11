@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "240611451572",
+    "firebase_url": "https://parkzyapplication.firebaseio.com",
+    "project_id": "parkzyapplication",
+    "storage_bucket": "parkzyapplication.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:240611451572:android:0fe85d335e6855af",
+        "android_client_info": {
+          "package_name": "com.example.kanika.parkzyapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "240611451572-5il2aoer31m12m9kdi3miuj20k676g24.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kanika.parkzyapplication",
+            "certificate_hash": "7C7E9C032A29427BBBFF5ED36B32883C8EB5980A"
+          }
+        },
+        {
+          "client_id": "240611451572-a7e4bqvspc1ptau6n1r0sv9jbp5v2klm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcZFwy0dLWDHOu8BazlsM6v0klvEQJ_d4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "240611451572-a7e4bqvspc1ptau6n1r0sv9jbp5v2klm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

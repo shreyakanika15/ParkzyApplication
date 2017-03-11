@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+
+
+    <!--<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <RelativeLayout
+            android:id="@+id/text"
+            android:layout_width="160dp"
+            android:layout_height="135dp"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/txt_dia"
+                android:layout_width="155dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Parking lot Info"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_marginTop="15dp"
+                android:textAppearance="@style/TextAppearance.AppCompat" />
+            <TextView
+                android:id="@+id/txt_price"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_margin="5dp"
+                android:text="Price"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_marginTop="25dp"
+                android:layout_below="@+id/txt_dia"
+                android:textAppearance="@style/TextAppearance.AppCompat" />
+
+            <TextView
+                android:text="Availability"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView3"
+                android:layout_below="@+id/txt_price"
+                android:layout_alignStart="@+id/txt_price"
+                android:textSize="20dp"
+                android:textStyle="normal|bold"
+                 />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/butt"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:orientation="horizontal"
+
+            >
+
+
+            <Button
+                android:id="@+id/btn_no"
+                android:layout_width="71dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="150dp"
+                android:textColor="#5DBCD2"
+                android:clickable="true"
+                android:textStyle="bold"
+                android:text="Back" />
+
+            <Button
+                android:id="@+id/btn_yes"
+                android:layout_width="71dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:text="Park"
+                android:textColor="#5DBCD2"
+                android:textStyle="bold"
+                android:layout_marginStart="75dp"
+                android:layout_marginTop="150dp"
+                />
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="20dp"
+                android:id="@+id/textView2"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"/>
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="20dp"
+                android:layout_above="@+id/textView2"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="33dp"
+                android:id="@+id/textView4"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>
