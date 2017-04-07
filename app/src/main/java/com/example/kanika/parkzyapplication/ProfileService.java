@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
+public class ProfileService extends AppCompatActivity implements View.OnClickListener {
 
     private FirebaseAuth firebaseAuth;
     private TextView textViewUserEmail;
@@ -24,7 +24,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         if(firebaseAuth.getCurrentUser()==null){
             finish();
-            startActivity(new Intent(this,LoginActivity.class));
+            startActivity(new Intent(this,LoginService.class));
 
         }
 
@@ -47,7 +47,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             //closing activity
             finish();
             //starting login activity
-            startActivity(new Intent(this,LoginActivity.class));
+            startActivity(new Intent(this,LoginService.class));
         }
 
 

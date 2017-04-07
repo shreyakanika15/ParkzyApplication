@@ -16,17 +16,11 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
 
-import static android.R.attr.data;
 
-//import static com.example.kanika.parkzyapplication.ParkzyApplication.index;
-
-public class RentersActivity extends AppCompatActivity {
+public class RentersService extends AppCompatActivity {
 
     private EditText nUserName;
     private EditText nLat;
@@ -47,9 +41,6 @@ public class RentersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_renters);
         nStorage = FirebaseStorage.getInstance().getReference();
-
-        //nSelectImage = (Button) findViewById(R.id.addImage);
-
         nRootRef = new Firebase("https://parkzyapplication.firebaseio.com/Users");
         nUserName = (EditText) findViewById(R.id.nameValue);
         nLat = (EditText) findViewById(R.id.latValue);
@@ -78,34 +69,9 @@ public class RentersActivity extends AppCompatActivity {
         nAddName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // index++;
-                //Firebase nRefChild = nRef.child("Name");
-                //nRefChild.setValue("Kanika");
-                Map<String, String> userMap = new HashMap<String, String>();
-                //     Firebase childRef= nRootRef.child("Name");
-              //  Firebase childRef = nRootRef.child(index.toString());
-                Firebase childRef=nRootRef.push();
-                //  String value=nUserName.getText().toString();
 
-                // JSONObject tempObject = new JSONObject();
-                try {
-                    userMap.put("name", nUserName.getText().toString());
-                    userMap.put("latitude", nLat.getText().toString());
-                    userMap.put("longitude", nLong.getText().toString());
-                    userMap.put("availability", nAvail.getText().toString());
-                    userMap.put("price", nPrice.getText().toString());
-                    //userMap.put("myUser", tempObject);
-                    //tempObject.put("fullName","Emin AYAR");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                pushValue();
 
-                //userMap.put("myUser", tempObject);
-
-                //
-                childRef.setValue(userMap);
-
-                //nRootRef.push().setValue(value);
             }
         });
 
@@ -115,20 +81,20 @@ public class RentersActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (view == nLogout) {
-                    // userSelect();
                     finish();
-                    //starting login activity
-                    //startActivity(new Intent(this,ProfileActivity.class));
-                    startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+                    startActivity(new Intent(getApplicationContext(),ProfileService.class));
 
                 }
             }
 
         });
-
-
-
     }
+
+    public void pushValue() {
+
+        onDetailsAdd();
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -146,11 +112,31 @@ public class RentersActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                    Toast.makeText(RentersActivity.this, "Upload Done.",Toast.LENGTH_LONG).show();
+                    Toast.makeText(RentersService.this, "Upload Done.",Toast.LENGTH_LONG).show();
                     nProgressDialog.dismiss();
                 }
             });
         }
+    }
+
+    private void onDetailsAdd(){
+
+        Map<String, String> userMap = new HashMap<String, String>();
+        Firebase childRef=nRootRef.push();
+
+        try {
+            userMap.put("name", nUserName.getText().toString());
+            userMap.put("latitude", nLat.getText().toString());
+            userMap.put("longitude", nLong.getText().toString());
+            userMap.put("availability", nAvail.getText().toString());
+            userMap.put("price", nPrice.getText().toString());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+            childRef.setValue(userMap);
+
     }
 
 

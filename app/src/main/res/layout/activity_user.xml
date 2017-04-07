@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.kanika.parkzyapplication.UserActivity">
+    tools:context="com.example.kanika.parkzyapplication.UserSelection">
 
     <LinearLayout
         android:orientation="vertical"
@@ -30,7 +30,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="For Drivers"
+            android:text="Nearby Parking Spaces"
             android:id="@+id/buttonForDrivers"
             android:layout_margin="15dp"
             />
@@ -38,15 +38,8 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="For Renters"
+            android:text="Add Your Post"
             android:id="@+id/buttonForRenters"
-            android:layout_margin="15dp"
-            />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Meter"
-            android:id="@+id/buttonForMeter"
             android:layout_margin="15dp"
             />
 

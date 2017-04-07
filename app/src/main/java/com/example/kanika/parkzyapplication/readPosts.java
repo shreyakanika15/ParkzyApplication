@@ -158,17 +158,17 @@ Log.d("after posts","hi");
         /*if(posts.size()>0)
         {
             Log.d( "getkeynjkdj" , size.toString());
-          //  Intent intent= new Intent(activityContext,ProfileActivity.class);
+          //  Intent intent= new Intent(activityContext,ProfileService.class);
           //  intent.putExtra("yash",posts);
             Log.d("after intent", "after intent");
           //  activityContext.startActivity(intent);
             //finish();
             //starting login activity
-            //startActivity(new Intent(this,ProfileActivity.class));
-            // startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+            //startActivity(new Intent(this,ProfileService.class));
+            // startActivity(new Intent(getApplicationContext(),ProfileService.class));
 
 
-            //  intent= new Intent(MapsActivity.class);
+            //  intent= new Intent(MapsService.class);
         }*/
 
 

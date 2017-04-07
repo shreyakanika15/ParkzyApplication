@@ -17,15 +17,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginService extends AppCompatActivity implements View.OnClickListener {
 
     private Button buttonSignIn;
     private EditText editTextEmail;
     private EditText editTextPassword;
     private TextView textViewSignUp;
-
     private ProgressDialog progressDialog;
-
     private FirebaseAuth firebaseAuth;
 
     @Override
@@ -37,7 +35,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(firebaseAuth.getCurrentUser() != null){
             //profile activity here
             finish();
-            startActivity(new Intent(getApplicationContext(),UserActivity.class));
+            startActivity(new Intent(getApplicationContext(),UserSelection.class));
         }
         progressDialog = new ProgressDialog(this);
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
@@ -64,7 +62,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(TextUtils.isEmpty(password)){
             //password is empty
             Toast.makeText(this,"Please enter password",Toast.LENGTH_SHORT).show();
-            //stopping the function execution further
             return;
         }
         //if validations are ok
@@ -78,10 +75,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
                         if (task.isSuccessful()){
-                            //progressDialog.hide();﻿
-                            //start the profile activityToast.makeText(SignUp.this,"Registered Successfully", Toast.LENGTH_SHORT).show();
                             finish();
-                            startActivity(new Intent(getApplicationContext(),UserActivity.class));
+                            startActivity(new Intent(getApplicationContext(),UserSelection.class));
 
                         }
 

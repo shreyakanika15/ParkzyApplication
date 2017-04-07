@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,10 +24,9 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     private EditText editTextEmail;
     private EditText editTextPassword;
     private TextView textViewSignIn;
-
     private ProgressDialog progressDialog;
-
     private FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,18 +34,15 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
         firebaseAuth = FirebaseAuth.getInstance();// initialise firebase object
         if(firebaseAuth.getCurrentUser() != null){
-            //profile activity here
            finish();
-           startActivity(new Intent(getApplicationContext(),UserActivity.class));
+           startActivity(new Intent(getApplicationContext(),UserSelection.class));
         }
         progressDialog = new ProgressDialog(this);
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
-    // initializing views
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
 
         textViewSignIn = (TextView) findViewById(R.id.textViewSignIn);
-
         buttonRegister.setOnClickListener(this);//add listener and passing this as in same class
         textViewSignIn.setOnClickListener(this);
 
@@ -60,7 +55,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
         if(TextUtils.isEmpty(email)){
             //email is empty
-            Log.d("is it empty", "yes its empty");
             Toast.makeText(this,"Please enter email",Toast.LENGTH_SHORT).show();
             //stopping the function execution further
             return;
@@ -72,22 +66,18 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             //stopping the function execution further
             return;
         }
-        //if validations are ok
-        //we will first show a progressbar
+
         progressDialog.setMessage("Registering User...");
-       progressDialog.show();
-//takes 2 string argument create user on firebase console.. attach listener whether registration is completed or not
+        progressDialog.show();
         firebaseAuth.createUserWithEmailAndPassword(email,password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
                         if (task.isSuccessful()){
-                            //user is successfully registered
-                            //progressDialog.hide();﻿
-                                //profile activity here
+
                                finish();
-                               startActivity(new Intent(getApplicationContext(),UserActivity.class));
+                               startActivity(new Intent(getApplicationContext(),UserSelection.class));
 
                         }
                         else {
@@ -106,8 +96,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         }
 
         if(v == textViewSignIn){
-            //will open login activity here
-            startActivity(new Intent(this, LoginActivity.class));
+            startActivity(new Intent(this, LoginService.class));
         }
     }
 }

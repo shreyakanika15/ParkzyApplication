@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.kanika.parkzyapplication.StopActivity">
+    tools:context="com.example.kanika.parkzyapplication.StopService">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,6 +34,13 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"/>
 
+        <TextView android:id="@+id/textViewStop"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:visibility="invisible"
+                  android:layout_alignBottom="@+id/timePicker"
+            />
+
 
 
     </LinearLayout>
@@ -42,7 +49,7 @@
         android:text="Pay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button2"
+        android:id="@+id/payButton"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="53dp"/>
@@ -56,14 +63,16 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"/>
 
-    <Chronometer
+    <!--<Chronometer
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/button2"
         android:layout_marginBottom="12dp"
         android:id="@+id/chronometer2"
         android:textAlignment="center"
-        android:layout_alignStart="@+id/stopButton"/>
+        android:layout_alignStart="@+id/stopButton"/>-->
+
+
 
 
 </RelativeLayout>

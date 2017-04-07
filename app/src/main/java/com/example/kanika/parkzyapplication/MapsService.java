@@ -1,11 +1,8 @@
 package com.example.kanika.parkzyapplication;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Criteria;
 import android.location.Location;
-import android.location.LocationManager;
 
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -19,7 +16,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.firebase.client.Firebase;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -27,34 +23,24 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-import android.Manifest;
-
-import java.security.Provider;
-import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,GoogleApiClient.ConnectionCallbacks,GoogleApiClient.OnConnectionFailedListener,LocationListener {
-    LatLng latLng;
-    HashMap<String,post>databaseposts=new HashMap<String,post>();
+public class MapsService extends FragmentActivity implements OnMapReadyCallback,GoogleApiClient.ConnectionCallbacks,GoogleApiClient.OnConnectionFailedListener,LocationListener {
+    private LatLng latLng;
     private GoogleMap mMap;
-    GoogleApiClient mGoogleApiClient;
-    LocationRequest mLocationRequest;
-     Location mLastLocation;
-    Marker mCurrLocationMarker;
+    private GoogleApiClient mGoogleApiClient;
+    private LocationRequest mLocationRequest;
+    private Location mLastLocation;
+    private Marker mCurrLocationMarker;
     private Button nSearchButton;
     private DatabaseReference mRef;
-
-    //add listener
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,34 +53,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        // MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
-        // mapFragment.getMapAsync(MapDisplay.this);
-      //  mRef= FirebaseDatabase.getInstance().getReference().child("posts");
         nSearchButton=(Button) findViewById(R.id.buttonLoad);
-
-
-
         nSearchButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
-                Log.d("onclick", "onclick");
-                //Location mLastLocation;
+
                 if (view == nSearchButton) {
-                    // userSelect();
-                    Log.d("view", "onclick");
-                   // readPosts readPosts=new readPosts();
-                    Log.d("readposts", "onclick");
-                  //  databaseposts=  readPosts.readPost();
-                  // Log.d("datab", databaseposts.toString());
-                    //final Bundle bundle = new Bundle();
-                   // bundle.putBinder("Last_Location", new ObjectWrapperForBinder(latLng));
-                    //Log.d("after putting binder", "hihilhil");
-                    //startActivity(new Intent(getApplicationContext, MarkerActivity.class).putExtras(bundle));
-                    Intent intent=new Intent(getApplicationContext(),MarkerActivity.class);
-                    Log.d("intent","intent");
-                 // intent.putExtras(bundle);
-                   // Log.d("after put",intent.putExtras(bundle).toString());
+                    Intent intent=new Intent(getApplicationContext(),MarkerService.class);
                     startActivity(intent);
 
                 }
@@ -111,23 +77,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (ContextCompat.checkSelfPermission(this,
                 android.Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
-
-            // Asking user if explanation is needed
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     android.Manifest.permission.ACCESS_FINE_LOCATION)) {
 
-                // Show an expanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-
-                //Prompt the user once explanation has been shown
                 ActivityCompat.requestPermissions(this,
                         new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
                         MY_PERMISSIONS_REQUEST_LOCATION);
 
 
             } else {
-                // No explanation needed, we can request the permission.
                 ActivityCompat.requestPermissions(this,
                         new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
                         MY_PERMISSIONS_REQUEST_LOCATION);
@@ -153,7 +111,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
 
-
         //Initialize Google Play Services
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(this,
@@ -161,7 +118,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     == PackageManager.PERMISSION_GRANTED) {
                 buildGoogleApiClient();
                 mMap.setMyLocationEnabled(true);
-                Log.d("mMap.setMyLocat", "hi");
             }
         } else {
             buildGoogleApiClient();
@@ -193,9 +149,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (ContextCompat.checkSelfPermission(this,
                 android.Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
-            //  LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
             LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-            Log.d("inside fused location" , "onco");
         }
 
     }
@@ -229,8 +183,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 return;
             }
 
-            // other 'case' lines to check for other permissions this app might request.
-            //You can add here other case statements according to your requirement.
+
         }
     }
 
@@ -257,14 +210,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.position(latLng);
             markerOptions.title("Current Position");
-
-            // markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
             mCurrLocationMarker = mMap.addMarker(markerOptions);
-            Log.d("mCurrLocationMarker" ,"mCurrLocationMarker");
-
-            //move map camera
             mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
             mMap.animateCamera(CameraUpdateFactory.zoomTo(16));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
 
             //stop location updates
             if (mGoogleApiClient != null) {
